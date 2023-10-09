@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // new color
-  static const Color primaryColor = Color(0xFF3173AA);
-  static const Color purple200Color = Color(0xFFBB86FC);
-  static const Color purple500Color = Color(0xFF6200EE);
-  static const Color purple700Color = Color(0xFF3700B3);
-  static const Color teal200Color = Color(0xFF03DAC5);
-  static const Color teal700Color = Color(0xFF018786);
   static const Color blackColor = Color(0xFF000000);
   static const Color whiteColor = Color(0xFFFFFFFF);
-  static const Color secondaryColor = Color(0xFF03A9F4);
-  // old color
   static const Color greyColor = Color(0xFF606060);
   static const Color bgColor = Color(0xFFF2F2F2);
   static const Color inputColor = Color(0xFFE8E8E8);
@@ -23,6 +14,18 @@ class AppColors {
   static const Color alertErrorColor = Color(0xFFf8d7da);
   static const Color textSuccessColor = Color(0xFF155724);
   static const Color textErrorColor = Color(0xFF721c24);
+
+  static const Color blueAccentColor = Color(0xFF50A6C7);
+  static const Color primaryColor = Color(0xFF18284C);
+  static const Color cardColor = Color(0xFF1E3364);
+  static const Color indicatorColor = Color(0xFFF7D18E);
+  static const Color disableIndicatorColor = Color(0xFF2E486A);
+  static const Color starColor = Color(0xFFF8D956);
+  static const Color shareColor = Color(0xFF4694E8);
+  static const Color percentEnableColor = Color(0xFF90C388);
+  static const Color percentDisableColor = Color(0xFFD67976);
+  static const Color trueQuestionColor = Color(0xFF547E63);
+  static const Color falseQuestionColor = Color(0xFFB64741);
 
   static const Map<int, Color> colorMap = {
     50: Color(0xFF314e73),

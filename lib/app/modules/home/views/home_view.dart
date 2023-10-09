@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:salt/app/utils/local_storage.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/app_colors.dart';
 import '../controllers/home_controller.dart';
 
@@ -31,6 +33,58 @@ class _HomeViewPageState extends State<HomeViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primaryColor,
+      appBar: AppBar(
+        backgroundColor: AppColors.primaryColor,
+        title: Text(
+          "Users List".toUpperCase(),
+          style: const TextStyle(
+            fontSize: 16.0,
+            fontFamily: 'Quicksand',
+            fontWeight: FontWeight.bold,
+            color: AppColors.whiteColor,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Center(
+              child: InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.signIn);
+                  controller.box.remove(LocalStorage.tokenJWT);
+                  controller.box.remove(LocalStorage.isSignIn);
+                },
+                child: const Card(
+                  color: AppColors.cardColor,
+                  elevation: 10.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(10.0),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10.0,
+                    ),
+                    child: Text(
+                      "Sign Out",
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.whiteColor,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Obx(
           () {
@@ -72,21 +126,7 @@ class _HomeViewPageState extends State<HomeViewPage> {
                 },
                 child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Center(
-                        child: Text(
-                          "data users".toUpperCase(),
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontFamily: 'Quicksand',
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.whiteColor,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10.0),
+                    const SizedBox(height: 20.0),
                     Expanded(
                       child: ListView.builder(
                         shrinkWrap: true,
@@ -97,9 +137,8 @@ class _HomeViewPageState extends State<HomeViewPage> {
                                 const EdgeInsets.only(right: 20.0, left: 20.0),
                             child: Card(
                               elevation: 10.0,
-                              color: AppColors.whiteColor,
-                              shadowColor:
-                                  AppColors.shadowColor.withOpacity(0.15),
+                              color: AppColors.cardColor,
+                              shadowColor: AppColors.primaryColor,
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10.0),
@@ -107,33 +146,49 @@ class _HomeViewPageState extends State<HomeViewPage> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
-                                child: Row(
+                                child: Column(
                                   children: [
-                                    Image.asset(
-                                      "assets/images/warga.png",
-                                      height: 60.0,
-                                    ),
-                                    const SizedBox(width: 10.0),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                    Row(
                                       children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Nama : ${controller.usersData[index].email}"
-                                                  .toUpperCase(),
-                                              style: const TextStyle(
-                                                fontSize: 14.0,
-                                                fontFamily: 'Quicksand',
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.blackColor,
+                                        ClipOval(
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          child: Image.network(
+                                            controller.usersData[index].avatar,
+                                            height: 70.0,
+                                            width: 70.0,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        const SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${controller.usersData[index].first_name} ${controller.usersData[index].last_name}"
+                                                    .toUpperCase(),
+                                                style: const TextStyle(
+                                                  fontSize: 12.0,
+                                                  fontFamily: 'Quicksand',
+                                                  fontWeight: FontWeight.bold,
+                                                  color: AppColors.whiteColor,
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ],
+                                              Text(
+                                                "${controller.usersData[index].email}",
+                                                style: const TextStyle(
+                                                  fontSize: 11.0,
+                                                  fontFamily: 'Quicksand',
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColors.whiteColor,
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),

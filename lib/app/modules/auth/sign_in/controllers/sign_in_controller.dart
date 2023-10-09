@@ -22,13 +22,9 @@ class SignInController extends GetxController {
 
   void login() async {
     final dataRequest = {
-      "email": "eve.holt@reqres.in",
-      "password": "cityslicka"
+      "username": usernameController.text,
+      "password": passwordController.text,
     };
-    // {
-    //   "username": usernameController.text,
-    //   "password": passwordController.text,
-    // };
 
     try {
       isLoading.toggle();
